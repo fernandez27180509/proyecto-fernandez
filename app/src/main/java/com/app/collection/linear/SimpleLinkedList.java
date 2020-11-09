@@ -2,7 +2,6 @@ package com.app.collection.linear;
 
 import com.app.collection.linear.nodes.SimpleNodeLinked;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Consumer;
 
