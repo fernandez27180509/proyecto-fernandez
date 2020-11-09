@@ -123,16 +123,32 @@ public class DataInputs extends JPanel {
         return this.codeInput.getText();
     }
 
+    public void setCode(String code) {
+        this.codeInput.setText(code);
+    }
+
     public String getAllName() {
         return this.allNameInput.getText();
+    }
+
+    public void setAllName(String allName) {
+        this.allNameInput.setText(allName);
     }
 
     public String getEmail() {
         return this.emailInput.getText();
     }
 
+    public void setEmail(String email) {
+        this.emailInput.setText(email);
+    }
+
     public String getSchool() {
         return Objects.requireNonNull(this.schoolSelector.getSelectedItem()).toString();
+    }
+
+    public void setSelectedSchool(String school) {
+        this.schoolSelector.setSelectedItem(school);
     }
 
 }

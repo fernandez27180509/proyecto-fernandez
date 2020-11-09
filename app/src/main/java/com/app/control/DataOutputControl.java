@@ -4,10 +4,12 @@ import com.app.collection.linear.SimpleLinkedList;
 import com.app.model.Student;
 import com.app.model.StudentDAO;
 import com.app.view.MainWindow;
+import com.app.view.input.DataInputs;
 import com.app.view.output.DataTableControls;
 import com.app.view.output.StudentDataTable;
 
 import javax.swing.*;
+import static javax.swing.JOptionPane.*;
 
 public class DataOutputControl {
 
@@ -46,7 +48,16 @@ public class DataOutputControl {
     }
 
     private void selectButtonAction() {
-        /* Empty code */
+        int selectedRow = this.studentDataTable.getTableView().getSelectedRow();
+        if (selectedRow != -1) {
+            DataInputs inputs = WindowsManager.localInstance.getDataInputControl().getDataInputs();
+            inputs.setCode(this.studentDataTable.getTableView().getValueAt(selectedRow, 1).toString());
+            inputs.setAllName(this.studentDataTable.getTableView().getValueAt(selectedRow, 2).toString());
+            inputs.setEmail(this.studentDataTable.getTableView().getValueAt(selectedRow, 3).toString());
+            inputs.setSelectedSchool(this.studentDataTable.getTableView().getValueAt(selectedRow, 4).toString());
+        } else {
+            showMessageDialog(this.owner, "No has seleccionado :(", "Error", ERROR_MESSAGE);
+        }
     }
 
     private void refreshButtonAction() {
