@@ -1,7 +1,6 @@
 package com.app.collection.linear;
 
 import com.app.collection.linear.nodes.DoublyLinkedNode;
-import com.app.collection.linear.nodes.SimpleNodeLinked;
 
 import java.util.Objects;
 import java.util.function.Consumer;
