@@ -16,7 +16,7 @@ public class DataTableControls extends JPanel {
         this.selectButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(this.selectButton);
 
-        this.refreshButton = new JButton("Actualizar");
+        this.refreshButton = new JButton("Recargar");
         this.refreshButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(this.refreshButton);
     }

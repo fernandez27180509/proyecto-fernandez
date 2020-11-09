@@ -81,9 +81,9 @@ public class StudentDAO extends DataBaseConnection {
                         try {
                             Student existingStudent = this.get(student.getStudentCode());
                             if (!existingStudent.getStudentAllName().equals(student.getStudentAllName())) {
-                                System.out.println(student);
-                                System.out.println(st);
-                                System.out.println(existingStudent);
+                                System.out.println("==========> " + student);
+                                System.out.println("==========> " + st);
+                                System.out.println("==========> " + existingStudent);
                                 statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
                                         "SET bd_curso_estructura.estudiante.Anombre='" + student.getStudentAllName() +
                                         "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
@@ -267,7 +267,6 @@ public class StudentDAO extends DataBaseConnection {
                         try {
                             SimpleLinkedList<Student> students = new SimpleLinkedList<>();
                             while (resultSet.next()) {
-                                System.out.println(resultSet.getRow());
                                 Student st = new Student(
                                         resultSet.getLong("id"),
                                         resultSet.getString("Anombre"),
@@ -275,7 +274,6 @@ public class StudentDAO extends DataBaseConnection {
                                         resultSet.getString("email"),
                                         resultSet.getString("escuela"));
                                 students.add(st);
-                                System.out.println(st);
                             }
                             try {
                                 resultSet.close();
