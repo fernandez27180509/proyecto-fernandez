@@ -7,11 +7,13 @@ import java.awt.*;
 public class StudentDataTable extends JPanel {
 
     private final DefaultTableModel tableModel;
+    private JTable tableView;
 
     public StudentDataTable() {
         super(new BorderLayout());
         this.tableModel = new DefaultTableModel(null, new String[] {"Id", "Código", "Apellidos y nombres", "Correo", "Escuela"});
-        this.add(new JScrollPane(new JTable(this.tableModel)), BorderLayout.CENTER);
+        this.tableView = new JTable(this.tableModel);
+        this.add(new JScrollPane(this.tableView), BorderLayout.CENTER);
     }
 
     public void addControls(DataTableControls controls) {
@@ -22,6 +24,10 @@ public class StudentDataTable extends JPanel {
 
     public DefaultTableModel getTableModel() {
         return this.tableModel;
+    }
+
+    public JTable getTableView() {
+        return this.tableView;
     }
 
 }
