@@ -81,42 +81,67 @@ public class StudentDAO extends DataBaseConnection {
                         try {
                             Student existingStudent = this.get(student.getStudentCode());
                             if (!existingStudent.getStudentAllName().equals(student.getStudentAllName())) {
+                                System.out.println(student);
+                                System.out.println(st);
+                                System.out.println(existingStudent);
                                 statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.Anombre=" + student.getStudentAllName() +
-                                        " WHERE id=" + student.getStudentId() + ";");
+                                        "SET bd_curso_estructura.estudiante.Anombre='" + student.getStudentAllName() +
+                                        "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
                             }
 
                             if (!existingStudent.getStudentSchool().equals(student.getStudentSchool())) {
                                 statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.escuela=" + student.getStudentSchool() +
-                                        " WHERE id=" + student.getStudentId() + ";");
+                                        "SET bd_curso_estructura.estudiante.escuela='" + student.getStudentSchool() +
+                                        "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
                             }
 
                             if (!existingStudent.getStudentEmail().equals(student.getStudentEmail())) {
                                 statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.email=" + student.getStudentEmail() +
-                                        " WHERE id=" + student.getStudentId() + ";");
+                                        "SET bd_curso_estructura.estudiante.email='" + student.getStudentEmail() +
+                                        "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
                             }
 
                             if (existingStudent.getStudentCode() != student.getStudentCode()) {
                                 statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
                                         "SET bd_curso_estructura.estudiante.codigo=" + student.getStudentCode() +
-                                        " WHERE id=" + student.getStudentId() + ";");
+                                        " WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
                             }
                             return true;
                         } catch (SQLException ex) {
                             Logger.error(ex, ":(");
+                        } finally {
+                            if (this.isConnectionOpened()) {
+                                this.closeStatement(statement);
+                            } else {
+                                Logger.info("The connection is closed");
+                            }
                         }
                     } catch (SQLException ex) {
                         Logger.error(ex, ":(");
                     } finally {
-                        this.closeStatement(statement);
+                        if (this.isConnectionOpened()) {
+                            this.closeStatement(statement);
+                        } else {
+                            Logger.info("The connection ins closed");
+                        }
                     }
                 } else {
                     Logger.error("Cannot connect to database :(");
                 }
             } catch (SQLException ex) {
                 Logger.error(ex, ":(");
+            } finally {
+                if (this.isConnectionOpened()) {
+                    try {
+                        if (this.close()) {
+                            Logger.info("Connection closed :)");
+                        } else {
+                            Logger.info("The connection is closed");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.error(ex);
+                    }
+                }
             }
         } else {
             return false;
