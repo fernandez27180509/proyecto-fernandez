@@ -25,6 +25,8 @@ dependencies {
     compile group: 'org.tinylog', name: 'tinylog-impl', version: '2.2.0'
     // https://mvnrepository.com/artifact/org.tinylog/tinylog-api
     compile group: 'org.tinylog', name: 'tinylog-api', version: '2.2.0'
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    compile group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
     // https://mvnrepository.com/artifact/com.jtattoo/JTattoo
     compile group: 'com.jtattoo', name: 'JTattoo', version: '1.6.13'
 }
