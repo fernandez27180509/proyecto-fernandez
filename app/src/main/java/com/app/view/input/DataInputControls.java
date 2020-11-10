@@ -25,6 +25,7 @@ public class DataInputControls extends JPanel {
         this.agreeButton = new JButton("Agregar");
         this.agreeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         GridBagConstraints addConstraints = new GridBagConstraints();
+        addConstraints.fill = GridBagConstraints.HORIZONTAL;
         addConstraints.insets = new Insets(0, 0, 5, 0);
         addConstraints.gridx = 0;
         addConstraints.gridy = 0;
@@ -33,6 +34,7 @@ public class DataInputControls extends JPanel {
         this.updateButton = new JButton("Actualizar");
         this.updateButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         GridBagConstraints updateConstraints = new GridBagConstraints();
+        updateConstraints.fill = GridBagConstraints.HORIZONTAL;
         updateConstraints.insets = new Insets(0, 0, 5, 0);
         updateConstraints.gridx = 0;
         updateConstraints.gridy = 1;
@@ -41,6 +43,7 @@ public class DataInputControls extends JPanel {
         this.deleteButton = new JButton("Eliminar");
         this.deleteButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         GridBagConstraints deleteConstraints = new GridBagConstraints();
+        deleteConstraints.fill = GridBagConstraints.HORIZONTAL;
         deleteConstraints.gridx = 0;
         deleteConstraints.gridy = 2;
         this.add(this.deleteButton, deleteConstraints);
