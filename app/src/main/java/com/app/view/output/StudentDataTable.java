@@ -7,7 +7,7 @@ import java.awt.*;
 public class StudentDataTable extends JPanel {
 
     private final DefaultTableModel tableModel;
-    private JTable tableView;
+    private final JTable tableView;
 
     public StudentDataTable() {
         super(new BorderLayout());

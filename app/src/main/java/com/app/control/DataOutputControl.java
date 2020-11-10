@@ -9,7 +9,9 @@ import com.app.view.output.DataTableControls;
 import com.app.view.output.StudentDataTable;
 
 import javax.swing.*;
-import static javax.swing.JOptionPane.*;
+
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class DataOutputControl {
 

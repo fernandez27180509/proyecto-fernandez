@@ -197,7 +197,7 @@ public class DataInputControl {
     }
 
     /** Empty **/
-    private void fillSchools() {
+    public void fillSchools() {
         SimpleLinkedList<String> schools = this.schoolDAO.getSchools();
         if (schools != null) {
             this.getDataInputs().getSchoolSelector().addItem("--- Seleccione ---");
