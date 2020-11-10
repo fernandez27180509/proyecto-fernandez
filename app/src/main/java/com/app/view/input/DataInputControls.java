@@ -1,5 +1,7 @@
 package com.app.view.input;
 
+import com.app.view.output.DataTableControls;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -22,7 +24,8 @@ public class DataInputControls extends JPanel {
         this.setLayout(controlLayout);
 
 
-        this.agreeButton = new JButton("Agregar");
+        this.agreeButton = new JButton("Agregar", new ImageIcon(Toolkit.getDefaultToolkit()
+                .getImage(DataTableControls.class.getResource("/icon/add.png"))));
         this.agreeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         GridBagConstraints addConstraints = new GridBagConstraints();
         addConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -31,7 +34,8 @@ public class DataInputControls extends JPanel {
         addConstraints.gridy = 0;
         this.add(this.agreeButton, addConstraints);
 
-        this.updateButton = new JButton("Actualizar");
+        this.updateButton = new JButton("Actualizar", new ImageIcon(Toolkit.getDefaultToolkit()
+                .getImage(DataTableControls.class.getResource("/icon/update.png"))));
         this.updateButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         GridBagConstraints updateConstraints = new GridBagConstraints();
         updateConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -40,7 +44,8 @@ public class DataInputControls extends JPanel {
         updateConstraints.gridy = 1;
         this.add(this.updateButton, updateConstraints);
 
-        this.deleteButton = new JButton("Eliminar");
+        this.deleteButton = new JButton("Eliminar", new ImageIcon(Toolkit.getDefaultToolkit()
+                .getImage(DataTableControls.class.getResource("/icon/delete.png"))));
         this.deleteButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         GridBagConstraints deleteConstraints = new GridBagConstraints();
         deleteConstraints.fill = GridBagConstraints.HORIZONTAL;
