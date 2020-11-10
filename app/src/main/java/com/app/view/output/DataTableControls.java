@@ -12,11 +12,13 @@ public class DataTableControls extends JPanel {
     public DataTableControls() {
         super(new FlowLayout());
 
-        this.selectButton = new JButton("Seleccionar");
+        this.selectButton = new JButton("Seleccionar", new ImageIcon(Toolkit.getDefaultToolkit()
+                .getImage(DataTableControls.class.getResource("/icon/select.png"))));
         this.selectButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(this.selectButton);
 
-        this.refreshButton = new JButton("Recargar");
+        this.refreshButton = new JButton("Recargar", new ImageIcon(Toolkit.getDefaultToolkit()
+                .getImage(DataTableControls.class.getResource("/icon/refresh.png"))));
         this.refreshButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.add(this.refreshButton);
     }
