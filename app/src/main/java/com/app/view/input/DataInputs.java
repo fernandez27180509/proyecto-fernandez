@@ -27,7 +27,7 @@ public class DataInputs extends JPanel {
 
     private void initComponents() {
         {
-            JLabel codeInputLabel = new JLabel("Código");
+            JLabel codeInputLabel = new JLabel("C\u00F3digo");
             GridBagConstraints codeLabelConstraints = new GridBagConstraints();
             codeLabelConstraints.insets = new Insets(0, 0, 5, 5);
             codeLabelConstraints.anchor = GridBagConstraints.WEST;

@@ -11,7 +11,7 @@ public class StudentDataTable extends JPanel {
 
     public StudentDataTable() {
         super(new BorderLayout());
-        this.tableModel = new DefaultTableModel(null, new String[] {"Id", "Código", "Apellidos y nombres", "Correo", "Escuela"});
+        this.tableModel = new DefaultTableModel(null, new String[] {"Id", "C\u00F3digo", "Apellidos y nombres", "Correo", "Escuela"});
         this.tableView = new JTable(this.tableModel);
         this.add(new JScrollPane(this.tableView), BorderLayout.CENTER);
     }
