@@ -69,62 +69,34 @@ public class StudentDAO extends DataBaseConnection {
 
     /**
      * Empty
+     * sql: UPDATE estudiante SET nombre Anombre='jhon' WHERE id=1;
      **/
     public boolean update(Student student) {
         Student st = this.get(student.getStudentCode());
         if (st != null) {
             try {
                 if (this.open()) {
-                    Statement statement = null;
-                    try {
-                        statement = this.getConnection().createStatement();
-                        try {
-                            Student existingStudent = this.get(student.getStudentCode());
-                            if (!existingStudent.getStudentAllName().equals(student.getStudentAllName())) {
-                                System.out.println("==========> " + student);
-                                System.out.println("==========> " + st);
-                                System.out.println("==========> " + existingStudent);
-                                statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.Anombre='" + student.getStudentAllName() +
-                                        "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
-                            }
-
-                            if (!existingStudent.getStudentSchool().equals(student.getStudentSchool())) {
-                                statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.escuela='" + student.getStudentSchool() +
-                                        "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
-                            }
-
-                            if (!existingStudent.getStudentEmail().equals(student.getStudentEmail())) {
-                                statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.email='" + student.getStudentEmail() +
-                                        "' WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
-                            }
-
-                            if (existingStudent.getStudentCode() != student.getStudentCode()) {
-                                statement.executeUpdate("UPDATE bd_curso_estructura.estudiante " +
-                                        "SET bd_curso_estructura.estudiante.codigo=" + student.getStudentCode() +
-                                        " WHERE bd_curso_estructura.estudiante.id=" + student.getStudentId() + ";");
-                            }
-                            return true;
-                        } catch (SQLException ex) {
-                            Logger.error(ex, ":(");
-                        } finally {
-                            if (this.isConnectionOpened()) {
-                                this.closeStatement(statement);
-                            } else {
-                                Logger.info("The connection is closed");
-                            }
-                        }
-                    } catch (SQLException ex) {
-                        Logger.error(ex, ":(");
-                    } finally {
-                        if (this.isConnectionOpened()) {
-                            this.closeStatement(statement);
-                        } else {
-                            Logger.info("The connection ins closed");
-                        }
+                    boolean state = true;
+                    if (student.getStudentCode() != st.getStudentCode()) {
+                        Logger.info("The codes are different");
+                        state = this.executeUpdate("UPDATE estudiante SET codigo=" + student.getStudentCode() + " WHERE id=" + st.getStudentId());
                     }
+
+                    if (!student.getStudentAllName().equals(st.getStudentAllName())) {
+                        Logger.info("The names are different");
+                        state = state && this.executeUpdate("UPDATE estudiante SET Anombre='" + student.getStudentAllName()+ "' WHERE id=" + st.getStudentId() + ";");
+                    }
+
+                    if (!student.getStudentEmail().equals(st.getStudentEmail())) {
+                        Logger.info("The emails are different");
+                        state = state && this.executeUpdate("UPDATE estudiante SET email='" + student.getStudentEmail() + "' WHERE id=" + st.getStudentId() + ";");
+                    }
+
+                    if (!student.getStudentSchool().equals(st.getStudentSchool())) {
+                        Logger.info("The schools are different");
+                        state = state && this.executeUpdate("UPDATE estudiante SET escuela='" + student.getStudentSchool() + "' WHERE id=" + st.getStudentId() + ";");
+                    }
+                    return state;
                 } else {
                     Logger.error("Cannot connect to database :(");
                 }
@@ -134,17 +106,39 @@ public class StudentDAO extends DataBaseConnection {
                 if (this.isConnectionOpened()) {
                     try {
                         if (this.close()) {
-                            Logger.info("Connection closed :)");
+                            Logger.info("Connection closed properly :)");
                         } else {
-                            Logger.info("The connection is closed");
+                            Logger.error("The connection could not be closed :(");
                         }
                     } catch (SQLException ex) {
-                        Logger.error(ex);
+                        Logger.error(ex, ":(");
                     }
+                } else {
+                    Logger.info("The connection is closed :)");
                 }
             }
         } else {
             return false;
+        }
+        return false;
+    }
+
+    private boolean executeUpdate(String sql) {
+        Statement update = null;
+        try {
+            update = this.getConnection().createStatement();
+            update.executeUpdate(sql);
+            return true;
+        } catch (SQLException ex) {
+            Logger.error(ex);
+        } finally {
+            if (update != null) {
+                try {
+                    update.close();
+                } catch (SQLException ex) {
+                    Logger.error(ex);
+                }
+            }
         }
         return false;
     }
