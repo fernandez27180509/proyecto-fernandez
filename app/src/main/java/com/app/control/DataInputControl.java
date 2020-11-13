@@ -155,6 +155,7 @@ public class DataInputControl {
                 if (this.studentDAO.update(student)) {
                     showMessageDialog(this.owner, "Datos actualizados :)", "Success", INFORMATION_MESSAGE);
                     this.dataInputs.clearFields();
+                    WindowsManager.localInstance.getDataOutputControl().refresh();
                 } else {
                     showMessageDialog(this.owner, "Ocurrio un error inesperado :(", "Error", ERROR_MESSAGE);
                 }
